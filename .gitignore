@@ -1,0 +1,11 @@
+.env
+.venv/
+.venv_clean/
+__pycache__/
+*.py[cod]
+kundli_*.png
+latest_kundli.json
+saved_kundlis.json
+.kundli_rag_index/
+astro/
+.vercel/
