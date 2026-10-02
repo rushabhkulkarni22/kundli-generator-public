@@ -7,7 +7,12 @@ from uuid import uuid4
 import streamlit as st
 from streamlit_searchbox import st_searchbox
 
-from kundli_complete_app import generate_chart, show_chart, show_upcoming_transits
+from kundli_complete_app import (
+    generate_chart,
+    main as saved_kundli_main,
+    show_chart,
+    show_upcoming_transits,
+)
 from kundli_streamlit import search_places, selected_datetime
 
 
@@ -78,4 +83,6 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    # This private deployment uses the complete non-RAG interface, including
+    # the owner's saved Kundli list stored in saved_kundlis.json.
+    saved_kundli_main()
