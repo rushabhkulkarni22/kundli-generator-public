@@ -304,6 +304,12 @@ def show_upcoming_transits(chart: dict) -> None:
 
 def main() -> None:
     st.set_page_config(page_title="Kundli Generator", page_icon="✨", layout="wide")
+    if st.session_state.get("authenticated"):
+        with st.sidebar:
+            st.success("Signed in")
+            if st.button("Sign out", use_container_width=True):
+                st.session_state.clear()
+                st.rerun()
     st.title("✨ Kundli Generator")
     st.caption("Create a North Indian Vedic Kundli from birth details")
     st.info("Enter the birth time accurately; a small difference can change the ascendant.")

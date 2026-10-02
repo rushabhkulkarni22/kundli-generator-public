@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import hashlib
+import hmac
 from uuid import uuid4
 
 import streamlit as st
@@ -14,6 +16,45 @@ from kundli_complete_app import (
     show_upcoming_transits,
 )
 from kundli_streamlit import search_places, selected_datetime
+
+
+AUTH_USERNAME = "Rutika"
+AUTH_SALT = bytes.fromhex("06240b31a34494ce55d48d8a7313fd11")
+AUTH_PASSWORD_HASH = bytes.fromhex(
+    "33b66c5c355738054d5eddbbd5ab35f4c87030914476a9c7ab94ed8c66b38d4c"
+)
+
+
+def password_matches(candidate: str) -> bool:
+    candidate_hash = hashlib.pbkdf2_hmac(
+        "sha256", candidate.encode("utf-8"), AUTH_SALT, 600_000
+    )
+    return hmac.compare_digest(candidate_hash, AUTH_PASSWORD_HASH)
+
+
+def authenticate() -> bool:
+    """Show a login gate and return True only for an authenticated session."""
+
+    if st.session_state.get("authenticated"):
+        return True
+
+    st.set_page_config(page_title="Kundli Login", page_icon="🔐", layout="centered")
+    st.title("🔐 Kundli Login")
+    st.caption("Sign in to access saved Kundlis and create a new chart.")
+    with st.form("login_form"):
+        username = st.text_input("Username")
+        password = st.text_input("Password", type="password")
+        submitted = st.form_submit_button(
+            "Sign in", type="primary", use_container_width=True
+        )
+    if submitted:
+        valid_user = hmac.compare_digest(username.strip(), AUTH_USERNAME)
+        if valid_user and password_matches(password):
+            st.session_state["authenticated"] = True
+            st.rerun()
+        else:
+            st.error("Incorrect username or password.")
+    return False
 
 
 def main() -> None:
@@ -83,6 +124,7 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    # This private deployment uses the complete non-RAG interface, including
-    # the owner's saved Kundli list stored in saved_kundlis.json.
-    saved_kundli_main()
+    # The authenticated deployment uses the complete non-RAG interface,
+    # including the saved Kundli list stored in saved_kundlis.json.
+    if authenticate():
+        saved_kundli_main()
