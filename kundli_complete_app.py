@@ -303,15 +303,16 @@ def show_upcoming_transits(chart: dict) -> None:
 
 
 def main() -> None:
-    st.set_page_config(page_title="Kundli Generator", page_icon="✨", layout="wide")
+    st.set_page_config(page_title="Celestial Kundli", page_icon="✦", layout="wide")
     if st.session_state.get("authenticated"):
         with st.sidebar:
             st.success("Signed in")
             if st.button("Sign out", use_container_width=True):
                 st.session_state.clear()
                 st.rerun()
-    st.title("✨ Kundli Generator")
-    st.caption("Create a North Indian Vedic Kundli from birth details")
+    st.markdown('<div class="app-kicker">PRIVATE VEDIC OBSERVATORY</div>', unsafe_allow_html=True)
+    st.title("✦ Celestial Kundli")
+    st.caption("Create a North Indian Vedic birth chart and explore current planetary movements")
     st.info("Enter the birth time accurately; a small difference can change the ascendant.")
 
     profiles = load_profiles()
@@ -349,12 +350,34 @@ def main() -> None:
 
     st.markdown("""
         <style>
-        div[data-testid="stVerticalBlockBorderWrapper"] {
-            border-radius: 24px; background: #fffef8; border-color: #e7e3d8;
+        .stApp {
+            background:
+              radial-gradient(circle at 8% 12%, rgba(255,255,255,.65) 0 1px, transparent 2px),
+              radial-gradient(circle at 91% 22%, rgba(98,210,255,.6) 0 1px, transparent 2px),
+              radial-gradient(circle at 74% 82%, rgba(255,255,255,.55) 0 1px, transparent 2px),
+              radial-gradient(ellipse at 50% 0%, #17285f 0%, #090e29 48%, #040716 100%);
+            color:#eaf6ff;
         }
-        .saved-avatar {width:42px;height:42px;border-radius:50%;background:#67b447;color:white;
+        [data-testid="stHeader"] {background:rgba(3,6,21,.5);backdrop-filter:blur(10px)}
+        h1,h2,h3,p,label,[data-testid="stCaptionContainer"] {color:#eaf6ff !important}
+        .app-kicker {letter-spacing:.32em;color:#6fd9ff;font-size:.72rem;font-weight:800;margin-bottom:-.5rem}
+        div[data-testid="stVerticalBlockBorderWrapper"] {
+            border-radius:24px;background:rgba(10,18,50,.78);border:1px solid rgba(93,174,255,.30);
+            box-shadow:0 16px 55px rgba(0,0,0,.28),inset 0 0 30px rgba(39,112,255,.05);
+        }
+        div[data-baseweb="input"] > div, div[data-baseweb="select"] > div {
+            background:rgba(3,9,31,.76);border-color:#294d8b;color:#edf7ff;
+        }
+        input {color:#edf7ff !important}
+        button[kind="primary"] {background:linear-gradient(90deg,#265bc7,#159ed3) !important;
+            border:1px solid #66d8ff !important;box-shadow:0 0 22px rgba(48,154,255,.28)}
+        button[kind="secondary"] {background:rgba(12,29,69,.82) !important;color:#dff5ff !important;
+            border-color:rgba(99,184,255,.35) !important}
+        [data-testid="stAlert"] {background:rgba(18,46,93,.70);color:#eaf6ff;border-color:#2d72bd}
+        [data-testid="stTabs"] button {color:#b9d9ef}
+        .saved-avatar {width:42px;height:42px;border-radius:50%;background:linear-gradient(145deg,#315fc5,#19a6cf);color:white;
             display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px;margin-top:7px}
-        .saved-count {color:#777;font-size:14px;margin-top:-8px;margin-bottom:8px}
+        .saved-count {color:#8fb0cd;font-size:14px;margin-top:-8px;margin-bottom:8px}
         </style>
     """, unsafe_allow_html=True)
 

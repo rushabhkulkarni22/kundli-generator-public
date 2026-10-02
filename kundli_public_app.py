@@ -1,4 +1,4 @@
-"""Privacy-safe public Kundli generator without saved profiles or RAG."""
+"""Animated celestial entrance and authentication for the Kundli application."""
 
 from __future__ import annotations
 
@@ -32,15 +32,82 @@ def password_matches(candidate: str) -> bool:
     return hmac.compare_digest(candidate_hash, AUTH_PASSWORD_HASH)
 
 
+def portal_theme(*, wheel: bool = False) -> None:
+    wheel_css = """
+    div[data-testid="stButton"] {display:flex; justify-content:center; margin:1.4rem 0 1rem}
+    div[data-testid="stButton"] > button {
+        width:min(68vw,430px) !important; height:min(68vw,430px) !important;
+        min-height:280px; border-radius:50% !important; color:#b9efff !important;
+        font-size:72px !important; border:2px solid rgba(111,217,255,.9) !important;
+        background:
+          radial-gradient(circle at center, #132b71 0 10%, transparent 10.5% 17%, #4a7fd0 17.5% 18.5%, transparent 19% 30%, #274e9c 30.5% 32%, transparent 32.5% 43%, #5ab8eb 43.5% 45%, transparent 45.5% 49%, #183874 49.5% 50%),
+          repeating-conic-gradient(from 0deg, rgba(143,229,255,.75) 0 1deg, transparent 1deg 29deg, rgba(143,229,255,.75) 29deg 30deg),
+          radial-gradient(circle, #1d54ad 0%, #111b52 58%, #070b22 100%) !important;
+        box-shadow:0 0 22px #39a9ff, 0 0 65px rgba(39,111,255,.7), inset 0 0 32px rgba(94,216,255,.85) !important;
+        animation:celestial-spin 30s linear infinite;
+        transition:filter .25s ease, box-shadow .25s ease;
+    }
+    div[data-testid="stButton"] > button:hover {
+        filter:brightness(1.2); box-shadow:0 0 35px #65d8ff,0 0 90px #315cff,inset 0 0 42px #73e4ff !important;
+    }
+    div[data-testid="stButton"] > button:focus:not(:active) {color:#b9efff !important}
+    @keyframes celestial-spin {to {transform:rotate(360deg)}}
+    @media (max-width:640px) {div[data-testid="stButton"] > button {min-height:260px}}
+    """ if wheel else ""
+    st.markdown(f"""
+    <style>
+    .stApp {{
+      background:
+        radial-gradient(circle at 12% 18%, rgba(255,255,255,.8) 0 1px, transparent 2px),
+        radial-gradient(circle at 84% 25%, rgba(111,217,255,.75) 0 1px, transparent 2px),
+        radial-gradient(circle at 72% 78%, rgba(255,255,255,.7) 0 1px, transparent 2px),
+        radial-gradient(circle at 22% 82%, rgba(96,137,255,.8) 0 1px, transparent 2px),
+        radial-gradient(ellipse at 50% 35%, #172762 0%, #090e2a 53%, #030615 100%);
+      color:#edf7ff;
+    }}
+    [data-testid="stHeader"] {{background:transparent}}
+    [data-testid="stToolbar"] {{right:1rem}}
+    h1,h2,h3,p,label,[data-testid="stCaptionContainer"] {{color:#edf7ff !important}}
+    .celestial-kicker {{text-align:center;letter-spacing:.38em;color:#7edcff;font-size:.78rem;font-weight:700}}
+    .celestial-title {{text-align:center;font-size:clamp(2rem,5vw,4rem);margin:.2rem 0;color:#f6fbff;
+      text-shadow:0 0 18px rgba(93,190,255,.8)}}
+    .celestial-copy {{text-align:center;color:#9eb9d8;max-width:620px;margin:0 auto 1rem}}
+    div[data-testid="stForm"] {{background:rgba(11,20,57,.78);border:1px solid rgba(104,190,255,.35);
+      border-radius:24px;padding:1.25rem;box-shadow:0 20px 70px rgba(0,0,0,.35),inset 0 0 28px rgba(57,127,255,.08)}}
+    div[data-baseweb="input"] > div {{background:rgba(3,9,31,.75);border-color:#315a9e}}
+    input {{color:#f3f8ff !important}}
+    button[kind="primaryFormSubmit"] {{background:linear-gradient(90deg,#235bc7,#19a4d9) !important;border:0 !important}}
+    {wheel_css}
+    </style>
+    """, unsafe_allow_html=True)
+
+
 def authenticate() -> bool:
     """Show a login gate and return True only for an authenticated session."""
 
     if st.session_state.get("authenticated"):
         return True
 
+    if not st.session_state.get("show_login"):
+        st.set_page_config(page_title="Celestial Kundli", page_icon="✦", layout="centered")
+        portal_theme(wheel=True)
+        st.markdown('<div class="celestial-kicker">VEDIC ASTROLOGY</div>', unsafe_allow_html=True)
+        st.markdown('<div class="celestial-title">Your Celestial Portal</div>', unsafe_allow_html=True)
+        st.markdown(
+            '<div class="celestial-copy">Click the rotating zodiac wheel to enter your private Kundli workspace.</div>',
+            unsafe_allow_html=True,
+        )
+        if st.button("☉", key="open_celestial_portal", type="primary"):
+            st.session_state["show_login"] = True
+            st.rerun()
+        st.markdown('<div class="celestial-copy">✦ Aligning planets · Mapping possibilities · Preserving tradition ✦</div>', unsafe_allow_html=True)
+        return False
+
     st.set_page_config(page_title="Kundli Login", page_icon="🔐", layout="centered")
-    st.title("🔐 Kundli Login")
-    st.caption("Sign in to access saved Kundlis and create a new chart.")
+    portal_theme()
+    st.markdown('<div class="celestial-kicker">PRIVATE OBSERVATORY</div>', unsafe_allow_html=True)
+    st.markdown('<div class="celestial-title">Welcome Back</div>', unsafe_allow_html=True)
+    st.markdown('<div class="celestial-copy">Sign in to access saved Kundlis and create a new chart.</div>', unsafe_allow_html=True)
     with st.form("login_form"):
         username = st.text_input("Username")
         password = st.text_input("Password", type="password")
