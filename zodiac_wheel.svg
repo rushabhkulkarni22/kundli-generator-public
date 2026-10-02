@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600">
+  <defs>
+    <radialGradient id="disc" cx="50%" cy="46%" r="55%">
+      <stop offset="0" stop-color="#263d9e"/>
+      <stop offset="0.42" stop-color="#173778"/>
+      <stop offset="0.75" stop-color="#0b2257"/>
+      <stop offset="1" stop-color="#050a25"/>
+    </radialGradient>
+    <radialGradient id="sun" cx="44%" cy="38%" r="65%">
+      <stop offset="0" stop-color="#74e5ff"/>
+      <stop offset="0.36" stop-color="#315bd0"/>
+      <stop offset="1" stop-color="#101a5b"/>
+    </radialGradient>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <circle cx="300" cy="300" r="288" fill="#03071b" stroke="#5bc8ff" stroke-width="4" filter="url(#glow)"/>
+  <circle cx="300" cy="300" r="274" fill="url(#disc)" stroke="#73d6ff" stroke-width="2"/>
+  <circle cx="300" cy="300" r="230" fill="none" stroke="#69cfff" stroke-width="3" filter="url(#soft)"/>
+  <circle cx="300" cy="300" r="151" fill="#102b6c" fill-opacity=".72" stroke="#6bdcff" stroke-width="3"/>
+  <circle cx="300" cy="300" r="113" fill="#0a1e55" stroke="#518fe3" stroke-width="3"/>
+  <circle cx="300" cy="300" r="65" fill="url(#sun)" stroke="#75e9ff" stroke-width="3" filter="url(#soft)"/>
+
+  <g stroke="#8fdfff" stroke-opacity=".72" stroke-width="2">
+    <line x1="300" y1="26" x2="300" y2="149"/><line x1="300" y1="26" x2="300" y2="149" transform="rotate(30 300 300)"/>
+    <line x1="300" y1="26" x2="300" y2="149" transform="rotate(60 300 300)"/><line x1="300" y1="26" x2="300" y2="149" transform="rotate(90 300 300)"/>
+    <line x1="300" y1="26" x2="300" y2="149" transform="rotate(120 300 300)"/><line x1="300" y1="26" x2="300" y2="149" transform="rotate(150 300 300)"/>
+    <line x1="300" y1="26" x2="300" y2="149" transform="rotate(180 300 300)"/><line x1="300" y1="26" x2="300" y2="149" transform="rotate(210 300 300)"/>
+    <line x1="300" y1="26" x2="300" y2="149" transform="rotate(240 300 300)"/><line x1="300" y1="26" x2="300" y2="149" transform="rotate(270 300 300)"/>
+    <line x1="300" y1="26" x2="300" y2="149" transform="rotate(300 300 300)"/><line x1="300" y1="26" x2="300" y2="149" transform="rotate(330 300 300)"/>
+  </g>
+
+  <g fill="#9de8ef" font-family="Segoe UI Symbol, Noto Sans Symbols, sans-serif" font-size="50" text-anchor="middle" dominant-baseline="middle" filter="url(#soft)">
+    <text x="300" y="108">♈</text><text x="396" y="134">♉</text><text x="466" y="204">♊</text>
+    <text x="492" y="300">♋</text><text x="466" y="396">♌</text><text x="396" y="466">♍</text>
+    <text x="300" y="492">♎</text><text x="204" y="466">♏</text><text x="134" y="396">♐</text>
+    <text x="108" y="300">♑</text><text x="134" y="204">♒</text><text x="204" y="134">♓</text>
+  </g>
+
+  <g fill="#72c8e8" font-family="Segoe UI Symbol, Noto Sans Symbols, sans-serif" font-size="27" text-anchor="middle" dominant-baseline="middle">
+    <text x="300" y="202">♈</text><text x="349" y="215">♉</text><text x="385" y="251">♊</text>
+    <text x="398" y="300">♋</text><text x="385" y="349">♌</text><text x="349" y="385">♍</text>
+    <text x="300" y="398">♎</text><text x="251" y="385">♏</text><text x="215" y="349">♐</text>
+    <text x="202" y="300">♑</text><text x="215" y="251">♒</text><text x="251" y="215">♓</text>
+  </g>
+
+  <g fill="#b5f1ff" font-family="Arial, sans-serif" font-size="12" font-weight="700" text-anchor="middle" letter-spacing="1">
+    <text x="300" y="50">ARIES</text><text x="428" y="84">TAURUS</text><text x="519" y="175">GEMINI</text>
+    <text x="550" y="304">CANCER</text><text x="519" y="436">LEO</text><text x="428" y="526">VIRGO</text>
+    <text x="300" y="558">LIBRA</text><text x="172" y="526">SCORPIO</text><text x="81" y="436">SAGITTARIUS</text>
+    <text x="50" y="304">CAPRICORN</text><text x="81" y="175">AQUARIUS</text><text x="172" y="84">PISCES</text>
+  </g>
+
+  <g fill="none" stroke="#9be9ff" stroke-linecap="round" filter="url(#soft)">
+    <circle cx="300" cy="300" r="44" stroke-width="2" stroke-dasharray="4 7"/>
+    <path d="M278 297 Q300 275 322 297 Q300 319 278 297Z" stroke-width="3"/>
+    <circle cx="300" cy="297" r="8" fill="#8fe9ff" stroke-width="2"/>
+    <path d="M285 326 Q300 337 315 326M278 272 Q300 258 322 272" stroke-width="2"/>
+  </g>
+</svg>

@@ -350,31 +350,50 @@ def main() -> None:
 
     st.markdown("""
         <style>
-        .stApp {
+        :root {color-scheme:dark}
+        html,body,[data-testid="stAppViewContainer"],[data-testid="stMain"],.stApp {
             background:
               radial-gradient(circle at 8% 12%, rgba(255,255,255,.65) 0 1px, transparent 2px),
               radial-gradient(circle at 91% 22%, rgba(98,210,255,.6) 0 1px, transparent 2px),
               radial-gradient(circle at 74% 82%, rgba(255,255,255,.55) 0 1px, transparent 2px),
-              radial-gradient(ellipse at 50% 0%, #17285f 0%, #090e29 48%, #040716 100%);
+              radial-gradient(ellipse at 50% 0%, #17285f 0%, #090e29 48%, #040716 100%) !important;
             color:#eaf6ff;
         }
-        [data-testid="stHeader"] {background:rgba(3,6,21,.5);backdrop-filter:blur(10px)}
-        h1,h2,h3,p,label,[data-testid="stCaptionContainer"] {color:#eaf6ff !important}
+        [data-testid="stMainBlockContainer"] {padding-top:4.25rem}
+        [data-testid="stHeader"] {background:rgba(3,6,21,.72) !important;backdrop-filter:blur(10px)}
+        section[data-testid="stSidebar"] {background:#070b1d !important;border-right:1px solid rgba(83,175,255,.22)}
+        section[data-testid="stSidebar"] > div {background:linear-gradient(180deg,#0a1230 0%,#050817 100%) !important}
+        section[data-testid="stSidebar"] [data-testid="stAlert"] {background:rgba(14,75,92,.52) !important}
+        h1 {color:#9ee9ff !important;text-shadow:0 0 24px rgba(55,172,255,.45)}
+        h2,h3 {color:#7fdcff !important}
+        p,label,[data-testid="stCaptionContainer"],.stMarkdown {color:#c5dcf0 !important}
         .app-kicker {letter-spacing:.32em;color:#6fd9ff;font-size:.72rem;font-weight:800;margin-bottom:-.5rem}
         div[data-testid="stVerticalBlockBorderWrapper"] {
-            border-radius:24px;background:rgba(10,18,50,.78);border:1px solid rgba(93,174,255,.30);
-            box-shadow:0 16px 55px rgba(0,0,0,.28),inset 0 0 30px rgba(39,112,255,.05);
+            border-radius:24px;background:linear-gradient(145deg,rgba(15,29,72,.94),rgba(5,12,37,.94)) !important;
+            border:1px solid rgba(91,195,255,.42) !important;
+            box-shadow:0 16px 55px rgba(0,0,0,.42),inset 0 0 35px rgba(39,112,255,.08);
         }
         div[data-baseweb="input"] > div, div[data-baseweb="select"] > div {
-            background:rgba(3,9,31,.76);border-color:#294d8b;color:#edf7ff;
+            background:#0b173b !important;border-color:#356ab3 !important;color:#bcecff !important;
         }
-        input {color:#edf7ff !important}
+        input {color:#bcecff !important;-webkit-text-fill-color:#bcecff !important;caret-color:#79dcff !important}
+        input::placeholder {color:#7398bb !important;-webkit-text-fill-color:#7398bb !important}
+        div[data-baseweb="select"] span,div[data-baseweb="select"] input {color:#bcecff !important}
+        div[data-baseweb="popover"],ul[role="listbox"] {background:#0a1637 !important;color:#d7f3ff !important}
+        li[role="option"] {color:#c4eaff !important}
+        li[role="option"]:hover {background:#17356c !important}
+        div[data-testid="stSegmentedControl"] {background:#091534;border-radius:12px;padding:3px}
+        div[data-testid="stSegmentedControl"] label {color:#aee8ff !important}
         button[kind="primary"] {background:linear-gradient(90deg,#265bc7,#159ed3) !important;
-            border:1px solid #66d8ff !important;box-shadow:0 0 22px rgba(48,154,255,.28)}
+            color:white !important;border:1px solid #66d8ff !important;box-shadow:0 0 22px rgba(48,154,255,.28)}
         button[kind="secondary"] {background:rgba(12,29,69,.82) !important;color:#dff5ff !important;
             border-color:rgba(99,184,255,.35) !important}
-        [data-testid="stAlert"] {background:rgba(18,46,93,.70);color:#eaf6ff;border-color:#2d72bd}
-        [data-testid="stTabs"] button {color:#b9d9ef}
+        button[kind="secondary"] p,button[kind="primary"] p {color:inherit !important}
+        [data-testid="stAlert"] {background:rgba(18,46,93,.78) !important;color:#eaf6ff !important;border-color:#2d72bd !important}
+        [data-testid="stTabs"] button {color:#9edfff !important}
+        [data-testid="stTabs"] [data-baseweb="tab-highlight"] {background:#60d7ff !important}
+        hr {border-color:rgba(91,174,226,.20) !important}
+        [data-testid="stDataFrame"] {border:1px solid rgba(80,177,239,.3);border-radius:14px;overflow:hidden}
         .saved-avatar {width:42px;height:42px;border-radius:50%;background:linear-gradient(145deg,#315fc5,#19a6cf);color:white;
             display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px;margin-top:7px}
         .saved-count {color:#8fb0cd;font-size:14px;margin-top:-8px;margin-bottom:8px}
